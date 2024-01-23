@@ -23,6 +23,17 @@ impl InputBuffer {
         return c;
     }
 
+    pub fn unget_string(&mut self, s: String) -> String {
+        for c in s.chars() {
+            self.input_buffer.push(c);
+        }
+        return s;
+    }
+
+    pub fn end_of_input(&mut self) -> bool {
+        return self.input_buffer.is_empty();
+    }
+
     fn load_file(file_name: String) -> Vec<char> {
         let mut file = File::open(file_name).expect("File path not given or incorrect");
         let mut input_buffer = Vec::new();
