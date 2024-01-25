@@ -64,11 +64,39 @@ impl Lexer {
             '-' => temp_token.token_type = TokenType::MINUS,
             '=' => temp_token.token_type = TokenType::EQUAL,
             _ => if c.unwrap_or_default().is_ascii_digit() {
-                self.input_buffer.unget_char(c.unwrap_or_default())
-            }
+                    self.input_buffer.unget_char(c.unwrap_or_default());
+                    return self.scan_number();
+                } else if c.unwrap_or_default().is_ascii_alphabetic() {
+                    self.input_buffer.unget_char(c.unwrap_or_default());
+                    return self.scan_id_or_keyword()
+                } else if self.input_buffer.end_of_input() {
+                    temp_token.token_type = TokenType::END_OF_FILE;
+                } else {
+                    temp_token.token_type = TokenType::ERROR;
+                }
         }
 
         return temp_token;
+    }
+
+    fn scan_number(&mut self) -> Token {
+
+    }
+
+    fn scan_id_or_keyword(&mut self) -> Token {
+
+    }
+
+    fn find_keyword_index(&mut self) -> Token {
+
+    }
+
+    fn get_token(&mut self) -> Token {
+
+    }
+
+    fn peek(&mut self, how_far: u8) -> Token {
+
     }
 
     fn skip_space(&mut self) -> bool {
