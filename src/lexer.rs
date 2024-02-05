@@ -1,7 +1,7 @@
 use core::fmt;
 use std::str::FromStr;
 pub use crate::input_buffer::InputBuffer;
-#[derive(Debug, Clone, PartialEq())]
+#[derive(Debug, Clone, PartialEq)]
 enum TokenType {
     END_OF_FILE, MAIN, PROC, ENDPROC,
     INPUT, OUTPUT, DO, EQUAL, NUM, ID, 
